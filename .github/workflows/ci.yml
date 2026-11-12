@@ -1,0 +1,27 @@
+name: CI
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  managed-and-native-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '10.0.x'
+      - name: Build Windows-targeted managed project (no Windows sound device)
+        run: dotnet build src/FakeRadio.AudioNode/FakeRadio.AudioNode.csproj -c Release -v:q
+      - name: Legacy and FM unit tests
+        run: |
+          dotnet run --project samples/FakeRadio.Examples -c Release -- --test
+          dotnet run --project samples/FakeRadio.Examples -c Release -- --test-fm
+      - name: Portable IONOS C++ and WAV CLI regression
+        run: |
+          make -C native/ionos all test
+          python3 native/ionos/check_wav.py
+          dotnet run --project samples/FakeRadio.Examples -c Release -- --test-native
+      - name: Render synthetic FM audio samples
+        run: dotnet run --project samples/FakeRadio.Examples -c Release -- --fm-examples --output artifacts/fm --seconds 3

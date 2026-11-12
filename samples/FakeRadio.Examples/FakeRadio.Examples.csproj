@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="../../src/FakeRadio.AudioNode/ChannelImpairments.cs" Link="ChannelImpairments.cs" />
+    <Compile Include="../../src/FakeRadio.AudioNode/IonosNativeProcessor.cs" Link="IonosNativeProcessor.cs" />
+    <Compile Include="../../src/FakeRadio.AudioNode/FmRfChannelProcessor.cs" Link="FmRfChannelProcessor.cs" />
+    <None Include="../../native/ionos/libionos_channel.so" Condition="Exists('../../native/ionos/libionos_channel.so')" CopyToOutputDirectory="PreserveNewest" Link="libionos_channel.so" />
+    <None Include="../../native/ionos/libionos_channel.dylib" Condition="Exists('../../native/ionos/libionos_channel.dylib')" CopyToOutputDirectory="PreserveNewest" Link="libionos_channel.dylib" />
+  </ItemGroup>
+</Project>
