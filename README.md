@@ -88,6 +88,4 @@ See [Validation](docs/VALIDATION.md), [Modem73 off-air benchmarks](docs/MODEM73-
 
 FakeRadio's separately authored code is distributed under [MIT](LICENSE). The IONOS Gaussian FIR coefficient data retains the original ARSFI [MIT license](native/ionos/IONOS-LICENSE.txt). Refer to [third-party notices](THIRD-PARTY-NOTICES.md).
 
-Never commit recordings with private message contents, station passwords, API tokens or lab-specific network configuration. An application ACK is not proof of Winlink/CMS delivery. This repository is for **virtual/off-air testing by default**, not unattended transmission or deployment to an RMS gateway.
-
 Related: [Relay73](https://github.com/Relay73/Relay73) · [Gateway](https://github.com/Relay73/relay73-gateway) · [Modem adapters](https://github.com/Relay73/relay73-modem-adapters).
